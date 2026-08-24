@@ -41,7 +41,7 @@ export default function Home() {
             song I&rsquo;ve had on repeat for weeks.
           </p>
         </div>
-        <div className="w-48 shrink-0 self-center sm:w-56 lg:w-64 lg:self-start">
+        <div className="hidden w-48 shrink-0 self-center sm:block sm:w-56 lg:w-64 lg:self-start">
           <div className="aspect-[3/4] rounded-md border-2 border-border p-3">
             <WorldDotMap />
           </div>
