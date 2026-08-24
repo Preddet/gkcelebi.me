@@ -8,6 +8,7 @@ const EMAILS = ["gokberkcelebi@std.iyte.edu.tr", "gkcelebi69@gmail.com"];
 
 const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/gokberk_celebi/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/g%C3%B6kberk-%C3%A7elebi/" },
   { label: "Behance", href: "https://www.behance.net/gkberkelebi" },
   {
     label: "Spotify",
@@ -26,11 +27,16 @@ export default function ContactPage() {
           Let&rsquo;s talk!
         </h1>
         <p className="mt-4 leading-relaxed text-foreground/90">
-          Don&rsquo;t hesitate contact me to have a chat.
+          Don&rsquo;t hesitate contacting me to have a chat.
         </p>
-        <p className="mt-6 font-[family-name:var(--font-label)] text-sm text-muted">
+        <a
+          href="https://tr.wikipedia.org/wiki/İzmir"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 block font-[family-name:var(--font-label)] text-base text-muted transition-colors hover:text-foreground"
+        >
           İzmir, Türkiye
-        </p>
+        </a>
 
         <div className="mt-8 space-y-3">
           {EMAILS.map((email) => (
