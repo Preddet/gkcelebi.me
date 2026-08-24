@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "About Gökberk Çelebi — a Bioengineering student at IZTECH (Izmir Institute of Technology), İzmir, Türkiye.",
+};
 
 export default function AboutPage() {
   return (

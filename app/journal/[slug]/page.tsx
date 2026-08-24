@@ -16,7 +16,11 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const post = getJournalPost(slug);
-  return { title: post?.title ?? "Journal" };
+  if (!post) return { title: "Journal" };
+  return {
+    title: post.title,
+    description: post.subtitle ?? `${post.title} — from Gökberk Çelebi's journal.`,
+  };
 }
 
 export default async function JournalPostPage({

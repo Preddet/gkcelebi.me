@@ -3,7 +3,10 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { getJournalPosts, formatDate } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Journal" };
+export const metadata: Metadata = {
+  title: "Journal",
+  description: "Gökberk Çelebi's journal — writing on classical music, art, and life in İzmir.",
+};
 
 export default function JournalPage() {
   const posts = getJournalPosts();

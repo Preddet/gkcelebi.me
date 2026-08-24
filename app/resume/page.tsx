@@ -15,7 +15,11 @@ import {
   type Entry,
 } from "@/lib/resume";
 
-export const metadata: Metadata = { title: "Resume" };
+export const metadata: Metadata = {
+  title: "Resume",
+  description:
+    "Gökberk Çelebi's resume — Bioengineering student at IZTECH, research experience in antibody engineering, and personal projects.",
+};
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

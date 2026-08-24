@@ -3,7 +3,10 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import FadeIn from "@/components/FadeIn";
 import { getProjects } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Projects" };
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Bioengineering and software projects by Gökberk Çelebi, including SmartEpitope.",
+};
 
 export default function ProjectsPage() {
   const projects = getProjects();

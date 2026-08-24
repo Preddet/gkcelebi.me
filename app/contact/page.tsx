@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import FadeIn from "@/components/FadeIn";
 import CopyEmailButton from "@/components/CopyEmailButton";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with Gökberk Çelebi (gkcelebi) — email, LinkedIn, Instagram, and Behance.",
+};
 
 const EMAILS = ["gokberkcelebi@std.iyte.edu.tr", "gkcelebi69@gmail.com"];
 

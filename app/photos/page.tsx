@@ -3,7 +3,10 @@ import FadeIn from "@/components/FadeIn";
 import PhotoGrid from "@/components/PhotoGrid";
 import { photos } from "@/lib/photos";
 
-export const metadata: Metadata = { title: "Photos" };
+export const metadata: Metadata = {
+  title: "Photos",
+  description: "A photography collection by Gökberk Çelebi.",
+};
 
 export default function PhotosPage() {
   return (
