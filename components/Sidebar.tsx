@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -99,11 +100,44 @@ function BehanceIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width={22} height={22} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" {...props}>
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  );
+}
+
+function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width={22} height={22} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" {...props}>
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  );
+}
+
 export default function Sidebar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [lastPathname, setLastPathname] = useState(pathname);
 
-  return (
-    <aside className="flex w-full shrink-0 flex-col justify-between border-border px-8 py-10 md:h-screen md:w-72 md:border-r md:sticky md:top-0">
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setOpen(false);
+  }
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const sidebarBody = (
+    <>
       <div>
         <Link href="/" className="flex flex-col items-start">
           <Image
@@ -157,6 +191,57 @@ export default function Sidebar() {
           ))}
         </div>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile top bar */}
+      <div className="flex items-center justify-between border-b border-border px-4 py-3 md:hidden">
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="/images/logo-mark.png" alt="Gökberk Çelebi" width={28} height={28} />
+          <span className="font-[family-name:var(--font-label)] text-sm font-bold">
+            Gökberk Çelebi
+          </span>
+        </Link>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+          className="p-1 text-foreground"
+        >
+          <MenuIcon />
+        </button>
+      </div>
+
+      {/* Mobile drawer */}
+      <div className={`fixed inset-0 z-50 md:hidden ${open ? "" : "pointer-events-none"}`}>
+        <div
+          onClick={() => setOpen(false)}
+          className={`absolute inset-0 bg-black/40 transition-opacity ${
+            open ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <aside
+          className="absolute inset-y-0 left-0 flex w-72 max-w-[85%] flex-col justify-between overflow-y-auto bg-background px-8 py-10 shadow-xl transition-transform duration-300"
+          style={{ transform: open ? "translateX(0)" : "translateX(-100%)" }}
+        >
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="absolute right-4 top-4 text-muted transition-colors hover:text-foreground"
+          >
+            <CloseIcon />
+          </button>
+          {sidebarBody}
+        </aside>
+      </div>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden shrink-0 flex-col justify-between border-border px-8 py-10 md:flex md:h-screen md:w-72 md:border-r md:sticky md:top-0">
+        {sidebarBody}
+      </aside>
+    </>
   );
 }
