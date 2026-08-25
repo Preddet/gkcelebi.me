@@ -4,7 +4,7 @@ import CopyEmailButton from "@/components/CopyEmailButton";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Gökberk Çelebi (gkcelebi) — email, LinkedIn, Instagram, and Behance.",
+  description: "Get in touch with Gökberk Çelebi (gkcelebi) — email, LinkedIn, Instagram, Behance, and GitHub.",
 };
 
 const EMAILS = ["gokberkcelebi@std.iyte.edu.tr", "gkcelebi69@gmail.com"];
@@ -13,6 +13,7 @@ const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/gokberk_celebi/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/g%C3%B6kberk-%C3%A7elebi/" },
   { label: "Behance", href: "https://www.behance.net/gkberkelebi" },
+  { label: "GitHub", href: "https://github.com/Preddet" },
   {
     label: "Spotify",
     href: "https://open.spotify.com/user/utpkb99568j8ads02vigobrhn",
