@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import FadeIn from "@/components/FadeIn";
 import { getProjects } from "@/lib/content";
@@ -23,27 +24,40 @@ export default function ProjectsPage() {
       </FadeIn>
 
       <div className="mt-10 space-y-12">
-        {projects.map((project, i) => (
-          <FadeIn key={project.slug} delay={i * 0.1}>
-            {project.url ? (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                className="font-[family-name:var(--font-display)] text-xl font-medium transition-colors hover:text-accent"
+        {projects.map((project, i) =>
+          project.inline ? (
+            <FadeIn key={project.slug} delay={i * 0.1}>
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-[family-name:var(--font-display)] text-xl font-medium transition-colors hover:text-accent"
+                >
+                  {project.title} &rarr;
+                </a>
+              ) : (
+                <h2 className="font-[family-name:var(--font-display)] text-xl font-medium">
+                  {project.title}
+                </h2>
+              )}
+              <div className="prose-journal mt-3 leading-relaxed text-foreground/90">
+                <MDXRemote source={project.content} />
+              </div>
+            </FadeIn>
+          ) : (
+            <FadeIn key={project.slug} delay={i * 0.1}>
+              <Link
+                href={`/projects/${project.slug}`}
+                className="group flex items-baseline justify-between gap-4"
               >
-                {project.title} &rarr;
-              </a>
-            ) : (
-              <h2 className="font-[family-name:var(--font-display)] text-xl font-medium">
-                {project.title}
-              </h2>
-            )}
-            <div className="prose-journal mt-3 leading-relaxed text-foreground/90">
-              <MDXRemote source={project.content} />
-            </div>
-          </FadeIn>
-        ))}
+                <span className="font-[family-name:var(--font-display)] text-xl font-medium transition-colors group-hover:text-accent">
+                  {project.title}
+                </span>
+              </Link>
+            </FadeIn>
+          )
+        )}
       </div>
     </div>
   );

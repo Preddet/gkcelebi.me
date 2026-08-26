@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import type { Photo } from "@/components/PhotoGrid";
 
 const JOURNAL_DIR = path.join(process.cwd(), "content", "journal");
 const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
@@ -21,7 +22,11 @@ export type Project = {
   slug: string;
   title: string;
   url?: string;
+  linkLabel?: string;
+  inline?: boolean;
   order: number;
+  thumbnail?: string;
+  gallery?: Photo[];
   content: string;
 };
 
@@ -49,6 +54,10 @@ export function getProjects(): Project[] {
     return { slug, content, ...(data as Omit<Project, "slug" | "content">) };
   });
   return projects.sort((a, b) => a.order - b.order);
+}
+
+export function getProject(slug: string): Project | undefined {
+  return getProjects().find((p) => p.slug === slug);
 }
 
 export function formatDate(iso: string): string {
