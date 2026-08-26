@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import FadeIn from "@/components/FadeIn";
-import { getProjects } from "@/lib/content";
+import { getProjects, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -23,21 +23,32 @@ export default function ProjectsPage() {
         </h1>
       </FadeIn>
 
-      <div className="mt-10 space-y-12">
+      <div className="mt-10 divide-y divide-border">
         {projects.map((project, i) =>
           project.inline ? (
-            <FadeIn key={project.slug} delay={i * 0.1}>
+            <FadeIn key={project.slug} delay={i * 0.05} className="py-5">
+              {project.date && (
+                <div className="font-[family-name:var(--font-mono)] text-xs text-muted">
+                  {formatDate(project.date)}
+                </div>
+              )}
               {project.url ? (
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-[family-name:var(--font-display)] text-xl font-medium transition-colors hover:text-accent"
+                  className="group mt-1 inline-flex items-center gap-2 font-[family-name:var(--font-display)] text-xl font-medium transition-colors hover:text-accent"
                 >
-                  {project.title} &rarr;
+                  {project.title}
+                  <span
+                    aria-hidden
+                    className="inline-block transition-transform group-hover:translate-x-1"
+                  >
+                    &rarr;
+                  </span>
                 </a>
               ) : (
-                <h2 className="font-[family-name:var(--font-display)] text-xl font-medium">
+                <h2 className="mt-1 font-[family-name:var(--font-display)] text-xl font-medium">
                   {project.title}
                 </h2>
               )}
@@ -46,13 +57,26 @@ export default function ProjectsPage() {
               </div>
             </FadeIn>
           ) : (
-            <FadeIn key={project.slug} delay={i * 0.1}>
+            <FadeIn key={project.slug} delay={i * 0.05}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group flex items-baseline justify-between gap-4"
+                className="group flex items-center justify-between gap-4 py-5"
               >
-                <span className="font-[family-name:var(--font-display)] text-xl font-medium transition-colors group-hover:text-accent">
-                  {project.title}
+                <div>
+                  {project.date && (
+                    <div className="font-[family-name:var(--font-mono)] text-xs text-muted">
+                      {formatDate(project.date)}
+                    </div>
+                  )}
+                  <div className="mt-1 font-[family-name:var(--font-display)] text-lg transition-colors group-hover:text-accent">
+                    {project.title}
+                  </div>
+                </div>
+                <span
+                  aria-hidden
+                  className="shrink-0 font-[family-name:var(--font-display)] text-xl text-muted transition-all group-hover:translate-x-1 group-hover:text-accent"
+                >
+                  &rarr;
                 </span>
               </Link>
             </FadeIn>

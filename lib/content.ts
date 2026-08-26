@@ -21,6 +21,7 @@ export type JournalPost = {
 export type Project = {
   slug: string;
   title: string;
+  date?: string;
   url?: string;
   linkLabel?: string;
   inline?: boolean;
