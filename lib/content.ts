@@ -54,7 +54,7 @@ export function getProjects(): Project[] {
     const { data, content } = matter(raw);
     return { slug, content, ...(data as Omit<Project, "slug" | "content">) };
   });
-  return projects.sort((a, b) => a.order - b.order);
+  return projects.sort((a, b) => (a.date ?? "") < (b.date ?? "") ? 1 : -1);
 }
 
 export function getProject(slug: string): Project | undefined {
