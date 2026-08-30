@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Bioengineering and software projects by Gökberk Çelebi, including SmartEpitope.",
 };
 
+const TOOLS = [{ title: "ELISA Analysis Tool", href: "/tools/elisa" }];
+
 export default function ProjectsPage() {
   const projects = getProjects();
 
@@ -23,7 +25,36 @@ export default function ProjectsPage() {
         </h1>
       </FadeIn>
 
-      <div className="mt-10 divide-y divide-border">
+      {TOOLS.length > 0 && (
+        <FadeIn className="mt-10">
+          <span className="font-[family-name:var(--font-label)] text-xs font-semibold uppercase tracking-wide text-muted">
+            Tools
+          </span>
+          <div className="mt-2 divide-y divide-border">
+            {TOOLS.map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className="group flex items-center justify-between gap-4 py-4"
+              >
+                <div className="font-[family-name:var(--font-display)] text-lg transition-colors group-hover:text-accent">
+                  {tool.title}
+                </div>
+                <span
+                  aria-hidden
+                  className="shrink-0 font-[family-name:var(--font-display)] text-xl text-muted transition-all group-hover:translate-x-1 group-hover:text-accent"
+                >
+                  &rarr;
+                </span>
+              </Link>
+            ))}
+          </div>
+        </FadeIn>
+      )}
+
+      <div className="my-8 border-t border-border" />
+
+      <div className="divide-y divide-border">
         {projects.map((project, i) =>
           project.inline ? (
             <FadeIn key={project.slug} delay={i * 0.05} className="py-5">

@@ -1,0 +1,17 @@
+---
+title: "ELISA Analysis Tool"
+date: "2026-08-30"
+url: "/tools/elisa"
+linkLabel: "Open the tool"
+order: 0
+---
+
+A browser tool for turning raw ELISA plate reader output into analysis-ready data.
+
+Paste the 8 by 12 grid of OD values from the plate reader export. Select the wells that make up each sample group, and mark which wells are its blank. The tool subtracts the blank, groups replicates by concentration, and builds a table that pastes straight into a GraphPad Prism XY or Grouped data table, one dataset per group with replicate subcolumns lined up.
+
+It also gives a short read on each group: whether the signal tracks the dose, how wide the assay window is, whether any points go negative after subtraction, and which replicates disagree by more than a set threshold. If one replicate looks off you can drop it from the average with a click and everything recalculates.
+
+Nothing is uploaded. The values, groups, and settings stay in your browser.
+
+The grouping is manual, so it works for any plate layout.
