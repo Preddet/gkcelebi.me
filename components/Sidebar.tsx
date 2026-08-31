@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import CopyEmailButton from "./CopyEmailButton";
 import BachButton from "./BachButton";
+import PlateCharacter from "./PlateCharacter";
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
@@ -18,14 +19,14 @@ const NAV_LINKS = [
 
 const SOCIAL_LINKS = [
   {
-    href: "https://open.spotify.com/user/utpkb99568j8ads02vigobrhn",
-    label: "Spotify",
-    icon: SpotifyIcon,
-  },
-  {
     href: "https://www.linkedin.com/in/g%C3%B6kberk-%C3%A7elebi/",
     label: "LinkedIn",
     icon: LinkedinIcon,
+  },
+  {
+    href: "https://github.com/Preddet",
+    label: "GitHub",
+    icon: GithubIcon,
   },
   {
     href: "https://www.instagram.com/gokberk_celebi/",
@@ -36,11 +37,6 @@ const SOCIAL_LINKS = [
     href: "https://www.behance.net/gkberkelebi",
     label: "Behance",
     icon: BehanceIcon,
-  },
-  {
-    href: "https://github.com/Preddet",
-    label: "GitHub",
-    icon: GithubIcon,
   },
 ];
 
@@ -57,14 +53,6 @@ function iconProps(props: React.SVGProps<SVGSVGElement>) {
     strokeLinejoin: "round" as const,
     ...props,
   };
-}
-
-function SpotifyIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" width={17} height={17} fill="currentColor" {...props}>
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.49 17.306c-.215.353-.675.463-1.027.248-2.863-1.748-6.464-2.144-10.707-1.177-.404.093-.804-.162-.897-.565-.093-.403.162-.803.565-.896 4.638-1.06 8.614-.604 11.818 1.362.353.216.463.676.248 1.028zm1.223-2.723c-.27.44-.845.578-1.284.308-3.278-2.016-8.276-2.6-12.156-1.423-.494.15-1.016-.13-1.166-.624-.149-.494.13-1.016.625-1.165 4.432-1.345 9.938-.694 13.694 1.62.44.27.578.845.287 1.284zm.105-2.835C15.29 9.412 8.774 9.19 5.026 10.335c-.593.18-1.22-.155-1.399-.748-.18-.593.155-1.22.748-1.4 4.301-1.305 11.49-1.05 16.028 1.62.53.312.706.99.394 1.52-.31.53-.99.706-1.52.394z" />
-    </svg>
-  );
 }
 
 function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -203,6 +191,16 @@ export default function Sidebar() {
               <Icon />
             </a>
           ))}
+          <Link
+            href="/tools/elisa"
+            aria-label="ELISA Analysis Tool"
+            title="ELISA Analysis Tool"
+            className={`transition-transform hover:-translate-y-0.5 hover:rotate-6 ${
+              pathname.startsWith("/tools/elisa") ? "text-foreground" : "hover:text-foreground"
+            }`}
+          >
+            <PlateCharacter size={24} />
+          </Link>
         </div>
       </div>
     </>
