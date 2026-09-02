@@ -346,8 +346,18 @@ export function processGroups(
     if (g.blankWells.length > 0 && blankRaw.length === 0)
       gWarnings.push("Blank wells have no numeric values.");
 
-    // group wells by step along the chosen axis
-    const pts = g.wells
+    // group wells by step along the chosen axis. Wells that are also this
+    // group's blank are dropped from the dose points - they define the
+    // baseline, they are not data.
+    const blankSet = new Set(g.blankWells);
+    const sampleWells = g.wells.filter((k) => !blankSet.has(k));
+    const droppedBlank = g.wells.length - sampleWells.length;
+    if (droppedBlank > 0) {
+      gWarnings.push(
+        `${droppedBlank} well(s) are both in the selection and the blank - left out of the curve.`
+      );
+    }
+    const pts = sampleWells
       .map((k) => ({ k, p: parseWellKey(k)! }))
       .filter((x) => x.p);
     const stepOf = (p: { row: number; col: number }) => (g.axis === "rows" ? p.row : p.col);
