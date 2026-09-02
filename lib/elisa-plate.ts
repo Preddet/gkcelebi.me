@@ -109,17 +109,43 @@ export function rangeSpecFromKeys(keys: string[]): string {
 /* --------------------------------------------------------------- OD paste */
 
 /**
- * Parse a pasted block of OD values into an 8 x 12 grid. Accepts tab- or
- * comma-separated text, with or without a leading A-H row-label column and
- * a leading column-number / header row. Non-numeric cells become null.
+ * Parse a pasted block of OD values into an 8 x 12 grid. Accepts Excel's
+ * tab-separated clipboard format, semicolon CSV, or comma CSV, with or without
+ * a leading A-H row-label column and a leading column-number / header row.
+ *
+ * Locale-aware: when the field delimiter is a tab or semicolon, a comma inside
+ * a cell (e.g. "0,088") is read as a decimal separator, not a delimiter.
+ * Non-numeric cells become null.
  */
 export function parseODPaste(text: string): { grid: PlateGrid; warnings: string[] } {
   const warnings: string[] = [];
-  const rawRows = text
-    .replace(/\r\n?/g, "\n")
+  const clean = text.replace(/\r\n?/g, "\n");
+
+  // A comma is a decimal separator (not a delimiter) when values look like
+  // "0,088" and there are no "0.088" style decimals anywhere.
+  const decimalComma = /\d,\d/.test(clean) && !/\d\.\d/.test(clean);
+  let splitter: RegExp;
+  if (clean.includes("\t")) splitter = /\t/;
+  else if (clean.includes(";")) splitter = /;/;
+  else if (decimalComma) splitter = /\s+/;
+  else splitter = /,/;
+
+  const rawRows = clean
     .split("\n")
-    .map((line) => line.split(/\t|,/).map((c) => c.trim()))
+    .map((line) =>
+      line
+        .trim()
+        .split(splitter)
+        .map((c) => {
+          const t = c.trim();
+          return decimalComma ? t.replace(",", ".") : t;
+        })
+    )
     .filter((cells) => cells.some((c) => c !== ""));
+
+  if (decimalComma) {
+    warnings.push('Read comma decimal separators (e.g. "0,088") as "0.088".');
+  }
 
   const numericCount = (cells: string[]) =>
     cells.filter((c) => c !== "" && Number.isFinite(Number(c))).length;

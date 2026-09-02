@@ -148,9 +148,12 @@ export default function ELISAProcessor() {
   }
 
   function parseXValues(text: string): number[] {
-    return text
+    let s = text.trim();
+    // European decimals ("0,5") when no "." decimals are present
+    if (/\d,\d/.test(s) && !/\d\.\d/.test(s)) s = s.replace(/(\d),(\d)/g, "$1.$2");
+    return s
       .split(/[\s,;]+/)
-      .filter((t) => t.trim() !== "")
+      .filter((t) => t !== "")
       .map((t) => Number(t))
       .filter((n) => Number.isFinite(n));
   }
