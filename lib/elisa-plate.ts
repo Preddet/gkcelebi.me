@@ -328,6 +328,14 @@ export function processGroups(
     const repOf = (p: { row: number; col: number }) => (g.axis === "rows" ? p.col : p.row);
     const steps = [...new Set(pts.map((x) => stepOf(x.p)))].sort((a, b) => a - b);
 
+    if (g.wells.length > 0 && g.xValues.length > 0 && g.xValues.length < steps.length) {
+      gWarnings.push(
+        `${g.xValues.length} X value(s) entered for ${steps.length} dose ${
+          g.axis === "rows" ? "rows" : "columns"
+        } - the last ${steps.length - g.xValues.length} use position numbers. Add the missing concentrations.`
+      );
+    }
+
     const points: GroupPoint[] = steps.map((step, i) => {
       const wellsHere = pts
         .filter((x) => stepOf(x.p) === step)
@@ -411,12 +419,15 @@ function maxReps(g: GroupResult): number {
  * both an **XY** table (first column read as X) and a **Grouped** table (first
  * column read as row titles). Set the number of replicate subcolumns in Prism
  * to the widest group.
+ *
+ * One row per dose point, in the same order the Results table shows them. When
+ * groups have different numbers of points, shorter groups are padded with blank
+ * cells; the X column is taken from the first group that has a point at that
+ * position.
  */
 export function toGraphPadClipboard(res: ProcessResult): string {
   const groups = res.groups.filter((g) => g.points.length > 0);
   if (groups.length === 0) return "";
-
-  const xs = [...new Set(groups.flatMap((g) => g.points.map((p) => p.x)))].sort((a, b) => a - b);
 
   const header = [""];
   for (const g of groups) {
@@ -425,11 +436,13 @@ export function toGraphPadClipboard(res: ProcessResult): string {
   }
   const lines = [header.join("\t")];
 
-  for (const x of xs) {
-    const cells = [String(x)];
+  const rowCount = Math.max(...groups.map((g) => g.points.length));
+  for (let r = 0; r < rowCount; r++) {
+    const xPoint = groups.map((g) => g.points[r]).find((p) => p !== undefined);
+    const cells = [xPoint ? String(xPoint.x) : String(r + 1)];
     for (const g of groups) {
       const k = maxReps(g);
-      const p = g.points.find((pt) => pt.x === x);
+      const p = g.points[r];
       for (let i = 0; i < k; i++) {
         cells.push(p && p.values[i] !== undefined ? p.values[i].toFixed(4) : "");
       }

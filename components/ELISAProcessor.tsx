@@ -150,6 +150,7 @@ export default function ELISAProcessor() {
   function parseXValues(text: string): number[] {
     return text
       .split(/[\s,;]+/)
+      .filter((t) => t.trim() !== "")
       .map((t) => Number(t))
       .filter((n) => Number.isFinite(n));
   }
