@@ -2,7 +2,7 @@ export const resumeHeader = {
   name: "Gökberk Çelebi",
   phone: "+90 505 213 63 33",
   email: "gokberkcelebi@std.iyte.edu.tr",
-  location: "İzmir Institute of Technology, Urla/İzmir",
+  location: "Urla, İzmir",
   linkedin: "https://www.linkedin.com/in/g%C3%B6kberk-%C3%A7elebi/",
 };
 
@@ -23,17 +23,26 @@ export const education: Entry[] = [
     title: "Izmir Institute of Technology",
     subtitle: "Bachelor of Science in Bioengineering",
     date: "September 2023 – Present",
-    bullets: ["GPA 3.4 / 4.0"],
+    bullets: ["GPA 3.4 / 4.0", "High Honors: Fall 2025, Spring 2026"],
   },
 ];
 
 export const experience: Entry[] = [
   {
+    title: "Research Intern",
+    org: "Izmir Biomedicine and Genome Center (IBG), Kalyoncu Laboratory",
+    date: "August 2026 – September 2026",
+    bullets: [
+      "Worked in Dr. Sibel Kalyoncu's antibody engineering laboratory on developing nanobody candidates against immune-checkpoint targets and studying how immune-checkpoint molecules interact.",
+      "Performed ELISA and pH-dependent binding assays, SDS-PAGE and Western blot analysis, Protein A affinity chromatography, and wound healing assays with quantitative image analysis.",
+    ],
+  },
+  {
     title: "Undergraduate Researcher",
-    org: "TÜBİTAK – IZTECH",
+    org: "TÜBİTAK 2247-C STAR Program, IZTECH",
     date: "January 2026 – July 2026",
     bullets: [
-      "Conducting research on antibody engineering under Asst. Prof. Hümeyra Taşkent Sezgin within the TÜBİTAK 2247-C STAR Program, focusing on nanobodies targeting HIV-1 capsid proteins.",
+      "Conducted research on antibody engineering under Asst. Prof. Hümeyra Taşkent Sezgin within the TÜBİTAK 2247-C STAR Program, focusing on nanobodies targeting HIV-1 capsid proteins.",
       "Hands-on experience in recombinant protein expression, Ni-NTA & ion exchange chromatography, SDS-PAGE & UV characterization and PCR applications.",
     ],
   },
@@ -41,40 +50,32 @@ export const experience: Entry[] = [
 
 export const activities: Entry[] = [
   {
-    title: "President of the Sub-Aqua Society",
+    title: "President",
     org: "IZTECH Sub-Aqua Society",
     date: "June 2025 – June 2026",
     bullets: [
-      "Managing operations for a 200+ member society — dive trips, seminars and outreach projects — while designing and facilitating SCUBA courses for new members.",
+      "Managed operations for a 200+ member society (dive trips, seminars and outreach projects) while designing and facilitating SCUBA courses for new members.",
     ],
   },
   {
-    title: "Chairperson of EMBS",
-    org: "IEEE IZTECH Student Branch",
+    title: "Chairperson",
+    org: "IEEE IZTECH Student Branch, Engineering in Medicine and Biology Society (EMBS)",
     date: "September 2024 – September 2025",
     bullets: [
-      "Elected Chairperson of IEEE IZTECH Engineering in Medicine and Biology Society, organized student-led technical trips, trainings and seminars reaching 100+ attendees.",
+      "Elected Chairperson, organized student-led technical trips, trainings and seminars reaching 100+ attendees.",
     ],
   },
 ];
 
 export const skills = {
   technical:
-    "Recombinant Protein Expression, SDS-PAGE & UV Absorbance Characterization, PCR, Chromatography (Ni-NTA, Ion exchange, Size Exclusion)",
-  software: "Fusion 360, ANSYS, Basic Python, Microsoft 365 Suite, Adobe Suite",
-  interests: "Diving (CMAS** SCUBA Diver), Photography, Piano, Archery, Lindy Hop/Swing Dances",
+    "Recombinant Protein Expression, SDS-PAGE & UV Absorbance, PCR, Chromatography (Ni-NTA, Ion Exchange, Size Exclusion, Protein A), ELISA & pH-Dependent Binding Assays, Western Blotting, Scratch Wound Healing Assay, Mammalian Cell Culture",
+  software: "SnapGene, ImageJ, Fusion 360, ANSYS, Basic Python, Microsoft 365, Adobe Suite",
 };
 
 export const languages = [
   { label: "English", value: "Advanced" },
   { label: "Turkish", value: "Native" },
-];
-
-export const honors = [
-  { label: "TÜBİTAK STAR Scholar", value: "Jan. 2026" },
-  { label: "High Honors", value: "Spring 2026" },
-  { label: "High Honors", value: "Fall 2025" },
-  { label: "Honors", value: "Fall 2024" },
 ];
 
 export const projects: Entry[] = [
@@ -102,25 +103,24 @@ export const projects: Entry[] = [
 
 export const programs: Entry[] = [
   {
-    title: "Program Participant | Novartis - Possible With You",
+    title: "Possible With You",
+    org: "Novartis Türkiye & Bilim Virüsü",
     date: "January 2026 – Present",
     bullets: [
-      "Selected as 1 of 100 from 1,000 applicants for an 8-month Novartis Türkiye & Bilim Virüsü program.",
-      "Developing skills in career readiness, mentorship, and professional identity building.",
+      "Selected as 1 of 100 from 1,000 applicants for an 8-month program focused on career readiness, mentorship, and professional identity building.",
     ],
   },
   {
-    title: "Program Participant | AstraZeneca Inclusion School",
+    title: "Inclusion School",
+    org: "AstraZeneca",
     date: "December 2025 – June 2026",
     bullets: [
-      "Selected as 1 of 50 university students nationwide for a 6-month DEI-focused program.",
-      "Training in inclusive leadership, gender equality, bias awareness, and social impact design.",
+      "Selected as 1 of 50 university students nationwide for a 6-month DEI-focused program on inclusive leadership, gender equality, bias awareness, and social impact design.",
     ],
   },
 ];
 
 export const certifications = [
+  { label: "Fundamentals of Western Blotting", org: "Bio-Rad Academy" },
   { label: "Autodesk 360 Certification", org: "Autodesk" },
-  { label: "Molecule to Market Job Simulation", org: "Pfizer UK" },
-  { label: "Robotics and Controls Job Simulation", org: "Johnson&Johnson MedTech" },
 ];

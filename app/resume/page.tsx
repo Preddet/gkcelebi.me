@@ -8,7 +8,6 @@ import {
   activities,
   skills,
   languages,
-  honors,
   projects,
   programs,
   certifications,
@@ -130,10 +129,6 @@ export default function ResumePage() {
               <span className="font-medium text-foreground">Software Skills: </span>
               {skills.software}
             </p>
-            <p>
-              <span className="font-medium text-foreground">Interests: </span>
-              {skills.interests}
-            </p>
           </div>
         </Section>
 
@@ -141,17 +136,6 @@ export default function ResumePage() {
           <div className="space-y-1.5">
             {languages.map((row) => (
               <div key={row.label} className="flex justify-between text-sm">
-                <span className="font-medium text-foreground">{row.label}</span>
-                <span className="text-muted">{row.value}</span>
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        <Section title="Honors">
-          <div className="space-y-1.5">
-            {honors.map((row, i) => (
-              <div key={i} className="flex justify-between text-sm">
                 <span className="font-medium text-foreground">{row.label}</span>
                 <span className="text-muted">{row.value}</span>
               </div>
