@@ -23,7 +23,7 @@ export const education: Entry[] = [
     title: "Izmir Institute of Technology",
     subtitle: "Bachelor of Science in Bioengineering",
     date: "September 2023 – Present",
-    bullets: ["GPA 3.4 / 4.0", "High Honors: Fall 2025, Spring 2026"],
+    bullets: ["GPA 3.4 / 4.0"],
   },
 ];
 
