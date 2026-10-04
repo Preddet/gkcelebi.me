@@ -96,14 +96,13 @@ export const projects: Entry[] = [
     date: "February 2026",
     bullets: [
       "Developed and currently maintain the official laboratory website using HTML5, CSS3 and JavaScript to showcase research projects, publications and the team.",
-      "Built a dynamic \"Peptide Playground\" that translates users' names into peptides, utilizing RDKit and Mol* for real-time 2D structural drawing and 3D coordinate modeling directly in the browser.",
     ],
   },
 ];
 
 export const programs: Entry[] = [
   {
-    title: "Possible With You",
+    title: "Program Participant - Possible With You",
     org: "Novartis Türkiye & Bilim Virüsü",
     date: "January 2026 – Present",
     bullets: [
@@ -111,8 +110,8 @@ export const programs: Entry[] = [
     ],
   },
   {
-    title: "Inclusion School",
-    org: "AstraZeneca",
+    title: "Inclusion School Participant",
+    org: "AstraZeneca Türkiye",
     date: "December 2025 – June 2026",
     bullets: [
       "Selected as 1 of 50 university students nationwide for a 6-month DEI-focused program on inclusive leadership, gender equality, bias awareness, and social impact design.",
