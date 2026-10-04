@@ -104,7 +104,7 @@ export const programs: Entry[] = [
   {
     title: "Program Participant - Possible With You",
     org: "Novartis Türkiye & Bilim Virüsü",
-    date: "January 2026 – Present",
+    date: "January 2026 – September 2026",
     bullets: [
       "Selected as 1 of 100 from 1,000 applicants for an 8-month program focused on career readiness, mentorship, and professional identity building.",
     ],
